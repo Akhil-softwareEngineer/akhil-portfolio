@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Akhil Nair</title>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1220;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #020617;
+      --border: #1f2937;
+      --radius-xl: 18px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+      --shadow-chip: 0 0 0 1px rgba(148, 163, 184, 0.18);
+      --transition: 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d283a 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 16px 64px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.65), transparent);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto 8px;
+      padding: 10px 16px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 10%, #93c5fd, #2563eb, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #e5f0ff;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-role {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+
+    .nav-links a:hover {
+      background: rgba(31, 41, 55, 0.9);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(59, 130, 246, 0.7);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.85));
+      color: #dbeafe;
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.45);
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      padding-top: 34px;
+      padding-bottom: 40px;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 26px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.2), rgba(15, 23, 42, 0.9));
+      box-shadow: var(--shadow-chip);
+      color: var(--muted);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    }
+
+    .pill-ghost {
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 5vw, 34px);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #60a5fa, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: none;
+      font-size: 13px;
+      font-weight: 500;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #e5f0ff;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.6);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.8);
+    }
+
+    .btn-ghost {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.8);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(31, 41, 55, 0.95);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.7);
+    }
+
+    .hero-right {
+      justify-self: center;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .glass-card {
+      border-radius: 24px;
+      padding: 16px 16px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.2), rgba(15, 23, 42, 0.98));
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .name-large {
+      font-weight: 600;
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    .role-badge {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(59, 130, 246, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #9ca3af;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .metric {
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 10px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+      color: #e5e7eb;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.18);
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      font-size: 10px;
+      color: #bbf7d0;
+      margin-bottom: 6px;
+    }
+
+    .status-pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    }
+
+    .little-note {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .orb {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.45), transparent 70%);
+      top: -30px;
+      right: -20px;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    /* Sections */
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(24, 37, 77, 0.9), rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      padding: 14px 16px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #9ca3af;
+    }
+
+    /* Skills */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .skills-card h4 {
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skills-list span {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #9ca3af;
+    }
+
+    /* Projects */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .project-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+      color: #93c5fd;
+    }
+
+    /* Experience / Education */
+
+    .timeline {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 850px) {
+      .timeline {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .timeline-item {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(55, 65, 81, 0.7);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .timeline-role {
+      font-size: 13px;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .timeline-org {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .timeline-meta {
+      font-size: 11px;
+      color: #818cf8;
+      margin-top: 2px;
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-list {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-list p {
+      margin-bottom: 6px;
+    }
+
+    .contact-list strong {
+      color: #e5e7eb;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .social-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: #93c5fd;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .contact-form label {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 7px 9px;
+      font-size: 12px;
+      color: #e5e7eb;
+      outline: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(59, 130, 246, 0.8);
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.7);
+    }
+
+    .contact-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Toast message */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(22, 163, 74, 0.95);
+      color: #ecfdf5;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">
+          AN
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Akhil Nair</span>
+          <span class="brand-role">Software Engineer · Java & Spring Boot</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <!-- ✅ Resume download -->
+        <a href="AkhilNewResume.pdf" class="nav-cta" download>Download Resume</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-badge-row">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Open to Opportunities
+          </div>
+          <div class="pill pill-ghost">
+            Based in Mumbai (willing to relocate), Maharashtra
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I'm <span>Akhil</span> — a Software Engineer building high-quality, scalable backend services.
+        </h1>
+
+        <p class="hero-subtitle">
+          Passionate Software Engineer with 4 years of experience in Java, Spring Boot, MySQL and Agile
+          methodologies. I’ve improved system performance, reduced bugs by over 30%, and mentored new
+          developers to help teams ship faster and more reliably.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            View My Projects
+          </button>
+          <a class="btn-ghost" href="#contact">
+            Contact Me
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>4+ Years Experience</span>
+          <span>Java · Spring Boot · MySQL</span>
+          <span>Senior Systems Engineer @ Infosys</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="glass-card">
+          <div class="orb"></div>
+
+          <div class="card-header">
+            <div>
+              <div class="name-large">Akhil Nair</div>
+              <div style="font-size:11px;color:#9ca3af;margin-top:2px;">
+                Senior Systems Engineer · Infosys Ltd, Pune
+              </div>
+            </div>
+            <div class="role-badge">
+              Software Engineer
+            </div>
+          </div>
+
+          <div class="tag-row">
+            <div class="tag">Java · Core Java</div>
+            <div class="tag">Spring Boot · Microservices</div>
+            <div class="tag">MySQL</div>
+            <div class="tag">Agile · Blueriq</div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <strong>4+</strong>
+              <span>Years Experience</span>
+            </div>
+            <div class="metric">
+              <strong>30%</strong>
+              <span>Bug Reduction</span>
+            </div>
+            <div class="metric">
+              <strong>3</strong>
+              <span>Developers Mentored</span>
+            </div>
+          </div>
+
+          <div class="status-pill">
+            <span></span>
+            Available for backend & Java roles
+          </div>
+
+          <div class="little-note">
+            I enjoy improving performance, debugging production issues, and mentoring teammates so the whole
+            team can deliver stable, high-impact services together.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header">
+        <h2 class="section-title">About</h2>
+        <p class="section-subtitle">Who I am & how I work</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card">
+          <h3>Short Story</h3>
+          <p>
+            I’m a Computer Science graduate with both B.Sc and M.Sc from SIES College of Arts, Science and Commerce
+            (Mumbai University), where I built a strong foundation in programming, data structures, and databases.
+          </p>
+          <p style="margin-top:8px;">
+            Since 2021, I’ve been working as a Senior Systems Engineer at Infosys, developing services using Java,
+            Spring Boot, MySQL and Blueriq in an Agile environment. I focus on writing clean, maintainable code,
+            debugging complex issues, and collaborating closely with cross-functional teams to improve overall
+            performance and reliability.
+          </p>
+          <p style="margin-top:8px;">
+            Along the way, I’ve received a Rise Award as Best Individual and Best Team, as well as client appreciation
+            for my contributions on critical projects — recognition that reflects my consistency and ownership mindset.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>What I Bring</h3>
+          <p>
+            I like to understand systems end-to-end — from database queries to service logic to monitoring and incident
+            handling. My focus is on performance, stability, and quality, not just shipping features.
+          </p>
+          <div class="chip-row">
+            <div class="chip">Java & Spring Boot backend</div>
+            <div class="chip">Performance & bug reduction</div>
+            <div class="chip">Agile & production support</div>
+            <div class="chip">Mentoring & teamwork</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-header">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Tools & technologies I work with</p>
+      </div>
+
+      <div class="card">
+        <div class="skills-grid">
+          <div class="skills-card">
+            <h4>Languages</h4>
+            <div class="skills-list">
+              <span>Java</span>
+              <span>Core Java</span>
+              <span>SQL</span>
+            </div>
+          </div>
+
+          <div class="skills-card">
+            <h4>Frameworks & Practices</h4>
+            <div class="skills-list">
+              <span>Spring Framework</span>
+              <span>Spring Boot</span>
+              <span>Microservices</span>
+              <span>Agile</span>
+              <span>Blueriq</span>
+            </div>
+          </div>
+
+          <div class="skills-card">
+            <h4>Database & Tools</h4>
+            <div class="skills-list">
+              <span>MySQL</span>
+              <span>Jira</span>
+              <span>Jenkins</span>
+              <span>Confluence</span>
+              <span>Kibana</span>
+              <span>IntelliJ IDEA</span>
+            </div>
+          </div>
+
+          <div class="skills-card">
+            <h4>Professional Strengths</h4>
+            <div class="skills-list">
+              <span>Problem solving</span>
+              <span>Production support</span>
+              <span>Incident analysis</span>
+              <span>Mentoring teammates</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Selected work I’m proud of</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- PROJECT 1: from resume -->
+        <div class="card project-card">
+          <div class="project-title">STATER NV Mortgage Service</div>
+          <div class="project-meta">
+            Java · Spring Boot · MySQL · Blueriq · Agile
+          </div>
+          <p style="font-size:12px;color:#9ca3af;">
+            Part of a 10-member team delivering mortgage services for a client. Mentored 3 team members and helped
+            increase team productivity by 20%. Performed backend testing with MySQL to ensure data accuracy,
+            identified and fixed bugs that improved performance by 20%, and implemented Java and Blueriq
+            enhancements that led to a 50% improvement in overall service functionality.
+          </p>
+        </div>
+
+        <!-- PROJECT 2: side project -->
+        <div class="card project-card">
+          <div class="project-title">Order Management Web App</div>
+          <div class="project-meta">
+            Java · Spring Boot · MySQL
+          </div>
+          <p style="font-size:12px;color:#9ca3af;">
+            Designed and developed a backend workflow to manage customer orders, statuses, and invoice generation.
+            Focused on optimized SQL queries, validations, and clean service-layer design to keep the application
+            reliable and easy to extend.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & EDUCATION -->
+    <section id="experience">
+      <div class="section-header">
+        <h2 class="section-title">Experience & Education</h2>
+        <p class="section-subtitle">Where I’ve learned and contributed</p>
+      </div>
+
+      <div class="timeline card">
+        <div>
+          <h3 style="font-size:14px;color:#e5e7eb;margin-bottom:6px;">Experience</h3>
+
+          <div class="timeline-item">
+            <div class="timeline-role">Senior Systems Engineer</div>
+            <div class="timeline-org">Infosys Ltd, Pune</div>
+            <div class="timeline-meta">May 2021 – Present</div>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;">
+              Working in an Agile environment, developing services using Java, Spring Boot, MySQL and Blueriq
+              for a large client, reducing development time by 20%. Reviewing code and debugging errors to
+              improve system performance by 30% and reduce bugs by over 30%. Involved in functional testing and production
+              incident resolution using Jenkins, Kibana, Jira and Confluence, while mentoring 3 new team members and
+              improving team efficiency by 50%.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-role">Intern</div>
+            <div class="timeline-org">Citygriti Management Services, Mumbai</div>
+            <div class="timeline-meta">Dec 2020 – Jan 2021</div>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;">
+              Supported daily tasks and improved productivity by 20%. Conducted source code reviews to identify
+              weaknesses before deployment, documenting and reporting 5 vulnerabilities in network systems to
+              the team.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size:14px;color:#e5e7eb;margin-bottom:6px;">Education & Certifications</h3>
+
+          <div class="timeline-item">
+            <div class="timeline-role">M.Sc. Computer Science</div>
+            <div class="timeline-org">SIES College of Arts, Science and Commerce · Mumbai University</div>
+            <div class="timeline-meta">Mar 2020 – Apr 2022 · CGPA: 9.6</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-role">B.Sc. Computer Science</div>
+            <div class="timeline-org">SIES College of Arts, Science and Commerce · Mumbai University</div>
+            <div class="timeline-meta">Jun 2017 – May 2020 · CGPA: 8.9</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-role">Certifications</div>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;">
+              • Infosys Global Agile Certification (Oct 2025)<br/>
+              • Infosys Certified Spring Boot Developer (Oct 2025)<br/>
+              • Infosys Certified Java SE17 Developer (Apr 2025)<br/>
+              • Infosys Certified MySQL Associate (Mar 2025)<br/>
+              • AZ-900 Microsoft Azure Fundamentals (Nov 2021 – Nov 2023)
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-role">Accomplishments</div>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;">
+              • Received Infosys Rise Awards for Best Individual and Best Team (Nov 2024).<br/>
+              • Received client appreciation as a top contributor on key projects (Jun 2025).<br/>
+              • Mentored 3 new employees, helping the team reach milestones faster.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Let’s connect or build something together</p>
+      </div>
+
+      <div class="contact-grid card">
+        <div class="contact-list">
+          <p><strong>Email:</strong> akkinair1999@gmail.com</p>
+          <p><strong>Phone:</strong> +91-8591286583</p>
+          <p><strong>Location:</strong> Mumbai (willing to relocate), Maharashtra</p>
+
+          <div class="social-row">
+            <!-- ✅ Real LinkedIn -->
+            <!-- replace the old anchor -->
+<a href="https://www.linkedin.com/in/akhil-softwareengineer" target="_blank" rel="noopener noreferrer" class="social-pill">LinkedIn</a>
+
+            <!-- ✅ Resume PDF -->
+            <a href="AkhilNewResume.pdf" download class="social-pill">Resume (PDF)</a>
+          </div>
+
+          <p style="margin-top:12px;">
+            Prefer email or LinkedIn for faster responses. Always happy to talk
+            about backend roles, Java/Spring projects, or long-term opportunities.
+          </p>
+        </div>
+
+        <!-- Contact form hooked to EmailJS -->
+        <form class="contact-form" id="contact-form">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="from_name" placeholder="Your Name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="reply_to" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="msg">Message</label>
+            <textarea id="msg" name="message" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button class="btn-primary" type="submit" id="sendBtn" style="width:max-content;">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Akhil Nair. All rights reserved.
+    </footer>
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Thank you! Your message has been sent.</div>
+
+  <!-- Year -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ✅ Correct EmailJS v4 init with publicKey
+    (function () {
+      emailjs.init({
+        publicKey: "YL531bHtIt1abQOfs", // your public key
+      });
+    })();
+
+    const form = document.getElementById("contact-form");
+    const btn = document.getElementById("sendBtn");
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      emailjs
+        .send("service_jeczq1q", "template_xpe6yqo", {
+          from_name: document.getElementById("name").value,
+          reply_to: document.getElementById("email").value,
+          message: document.getElementById("msg").value,
+        })
+        .then(
+          function () {
+            showToast("Thank you! Your message has been sent.");
+            btn.disabled = false;
+            btn.textContent = "Send Message";
+            form.reset();
+          },
+          function (error) {
+            console.error("Email send failed:", error);
+            const msg = error.text
+              ? "Error: " + error.text
+              : "Sorry, something went wrong. Please try again.";
+            showToast(msg);
+            btn.disabled = false;
+            btn.textContent = "Send Message";
+          }
+        );
+    });
+  </script>
+
+</body>
+</html>
